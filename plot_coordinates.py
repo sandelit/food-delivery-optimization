@@ -8,8 +8,7 @@ data = json.load(f)
 coord = data["coordinates"]
 
 ys, xs = zip(*coord) #create lists of x and y values
-# test comment 123
-# test2123 commenta
+
 plt.figure()
 plt.plot(xs,ys)
 plt.show() # if you need...
