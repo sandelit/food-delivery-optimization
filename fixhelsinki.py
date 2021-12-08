@@ -7,7 +7,7 @@ coordinates = data['geometries'][0]['coordinates']
 
 helsinki_coordinates = []
 
-for c in coordinates[::15]:
+for c in coordinates[::5]:
     c[0], c[1] = c[1], c[0]
     print(c)
 
