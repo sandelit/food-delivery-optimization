@@ -2,6 +2,7 @@
 import sys
 import json
 import random
+import geopy.distance
 import numpy as np
 import matplotlib.path as mplPath
 import matplotlib.pyplot as plt
@@ -16,10 +17,15 @@ def run(n):
 
     pickup_points = polygon.get_n_random_points(n)
     delivery_points = polygon.get_n_random_points(n)
-
     points = dict(zip(pickup_points, delivery_points))
-    print(points)
-    print(len(points))
+    points2 = list(zip(pickup_points, delivery_points))
+    delivery_distances = []
+    for point in points2:
+        delivery_distances.append(geopy.distance.distance(point[0], point[1]).m)
+
+    print(delivery_distances)
+    print(points2)
+    print(len(points2))
 
     polygon.plot_coordinates(pickup_points, delivery_points)
 

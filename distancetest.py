@@ -1,11 +1,7 @@
 import geopy.distance
 
-coords_1 = (60.16952, 24.93545)
-coords_2 = (59.32932, 18.06858)
+coords_1 = (60.27686377728241, 25.025427454194684)
+coords_2 = (60.17550582999867, 25.030633052651474)
 
 print(geopy.distance.distance(coords_1, coords_2).m)
-
-
-dict2 = {"test2": "test2"}
-dict3 = {"test3": "test3"}
-dict = {dict2:"dict2", dict3:"dict3"}
+#11296.593711754846

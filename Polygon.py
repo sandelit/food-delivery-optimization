@@ -47,3 +47,10 @@ class Polygon(object):
         deliveries = ax.scatter(dy, dx, color='r')
         plt.legend((pickups,deliveries),('pickups', 'deliveries'),numpoints=1, fontsize=8)
         plt.show()
+
+class Point():
+    def __init__(self, coordinates):
+        self.coordinates = coordinates
+
+    def distance_to(point):
+        return distance(self.coordinates, point)
