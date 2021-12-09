@@ -9,6 +9,16 @@ class Polygon(object):
 
     def __init__(self):
         self.coordinates = self.read_data('./data/helsinki_new.json')
+        self.lat_max  = max(map(lambda x: x[0], self.coordinates))
+        self.lat_min  = min(map(lambda x: x[0], self.coordinates))
+        self.long_max = max(map(lambda x: x[1], self.coordinates))
+        self.long_min = min(map(lambda x: x[1], self.coordinates))
+        self.courier_location = self.get_courier_location()
+
+    def get_courier_location(self):
+        lat = (self.lat_max + self.lat_min) / 2
+        long = (self.long_max + self.long_min) / 2
+        return (lat, long)
 
     def read_data(self, path):
         f = open(path)
@@ -20,11 +30,7 @@ class Polygon(object):
         return poly_path.contains_point(point)
 
     def get_random_point(self):
-        lat_max  = max(map(lambda x: x[0], self.coordinates))
-        lat_min  = min(map(lambda x: x[0], self.coordinates))
-        long_max = max(map(lambda x: x[1], self.coordinates))
-        long_min = min(map(lambda x: x[1], self.coordinates))
-        return (random.uniform(lat_max, lat_min), random.uniform(long_max, long_min))
+        return (random.uniform(self.lat_max, self.lat_min), random.uniform(self.long_max, self.long_min))
 
     def get_n_random_points(self, n):
         coords = []
@@ -36,21 +42,3 @@ class Polygon(object):
             else:
                 continue
         return coords
-
-    def plot_coordinates(self, pickup_points=None, delivery_points=None):
-        ys, xs = zip(*self.coordinates)
-        px, py = zip(*pickup_points)
-        dx, dy = zip(*delivery_points)
-        fig, ax = plt.subplots()
-        fig = plt.plot(xs, ys)
-        pickups = ax.scatter(py, px,color='b')
-        deliveries = ax.scatter(dy, dx, color='r')
-        plt.legend((pickups,deliveries),('pickups', 'deliveries'),numpoints=1, fontsize=8)
-        plt.show()
-
-class Point():
-    def __init__(self, coordinates):
-        self.coordinates = coordinates
-
-    def distance_to(point):
-        return distance(self.coordinates, point)
